@@ -1,0 +1,179 @@
+openapi: 3.0.0
+info:
+  title: TODO API
+  version: 1.0.0
+  description: TODOアプリケーションのRESTful API
+servers:
+  - url: https://learn-testing-api.namidapoo.workers.dev
+    description: Production
+  - url: http://localhost:8787
+    description: Local Development
+components:
+  schemas:
+    Todo:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 550e8400-e29b-41d4-a716-446655440000
+        title:
+          type: string
+          minLength: 1
+          maxLength: 100
+          example: 買い物に行く
+        description:
+          type: string
+          maxLength: 500
+          example: 牛乳とパンを買う
+        completed:
+          type: boolean
+          example: false
+        dueDate:
+          type: string
+          format: date-time
+          example: "2024-12-31T23:59:59Z"
+        createdAt:
+          type: string
+          format: date-time
+          example: "2024-01-01T00:00:00Z"
+        updatedAt:
+          type: string
+          format: date-time
+          example: "2024-01-01T00:00:00Z"
+      required:
+        - id
+        - title
+        - completed
+        - createdAt
+        - updatedAt
+    CreateTodo:
+      type: object
+      properties:
+        title:
+          type: string
+          minLength: 1
+          maxLength: 100
+        description:
+          type: string
+          maxLength: 500
+        dueDate:
+          type: string
+          format: date-time
+      required:
+        - title
+    UpdateTodo:
+      type: object
+      properties:
+        title:
+          type: string
+          minLength: 1
+          maxLength: 100
+        description:
+          type: string
+          maxLength: 500
+        completed:
+          type: boolean
+        dueDate:
+          type: string
+          format: date-time
+  parameters: {}
+paths:
+  /api/todos:
+    get:
+      parameters:
+        - schema:
+            type: string
+          required: false
+          name: completed
+          in: query
+        - schema:
+            type: string
+            enum:
+              - dueDate
+              - createdAt
+          required: false
+          name: sortBy
+          in: query
+        - schema:
+            type: string
+            enum:
+              - asc
+              - desc
+          required: false
+          name: order
+          in: query
+      responses:
+        "200":
+          description: TODOリストを返す
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Todo"
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateTodo"
+      responses:
+        "201":
+          description: 作成されたTODOを返す
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Todo"
+        "400":
+          description: バリデーションエラー
+  /api/todos/{id}:
+    get:
+      parameters:
+        - schema:
+            type: string
+          required: true
+          name: id
+          in: path
+      responses:
+        "200":
+          description: TODOを返す
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Todo"
+        "404":
+          description: TODOが見つからない
+    put:
+      parameters:
+        - schema:
+            type: string
+          required: true
+          name: id
+          in: path
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateTodo"
+      responses:
+        "200":
+          description: 更新されたTODOを返す
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Todo"
+        "404":
+          description: TODOが見つからない
+    delete:
+      parameters:
+        - schema:
+            type: string
+          required: true
+          name: id
+          in: path
+      responses:
+        "204":
+          description: TODOを削除した
+        "404":
+          description: TODOが見つからない
