@@ -141,8 +141,8 @@ pnpm dlx shadcn@latest add textarea
 
 ### Phase 3
 
-- [ ] useTodosフックの実装完了
-- [ ] useTodoMutationsフックの実装完了
+- [x] useTodosフックの実装完了
+- [x] useTodoMutationsフックの実装完了
 
 ### Phase 4
 
