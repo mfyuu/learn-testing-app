@@ -15,7 +15,7 @@ export interface paths {
 			parameters: {
 				query?: {
 					completed?: string;
-					sortBy?: "dueDate" | "createdAt";
+					sortBy?: "createdAt";
 					order?: "asc" | "desc";
 				};
 				header?: never;
@@ -193,11 +193,6 @@ export interface components {
 			completed: boolean;
 			/**
 			 * Format: date-time
-			 * @example 2024-12-31T23:59:59Z
-			 */
-			dueDate?: string;
-			/**
-			 * Format: date-time
 			 * @example 2024-01-01T00:00:00Z
 			 */
 			createdAt: string;
@@ -210,15 +205,11 @@ export interface components {
 		CreateTodo: {
 			title: string;
 			description?: string;
-			/** Format: date-time */
-			dueDate?: string;
 		};
 		UpdateTodo: {
 			title?: string;
 			description?: string;
 			completed?: boolean;
-			/** Format: date-time */
-			dueDate?: string;
 		};
 	};
 	responses: never;

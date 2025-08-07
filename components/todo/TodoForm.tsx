@@ -17,7 +17,6 @@ export function TodoForm({ onSuccess }: TodoFormProps) {
 	const [isSubmitting, setIsSubmitting] = useState(false);
 	const [title, setTitle] = useState("");
 	const [description, setDescription] = useState("");
-	const [dueDate, setDueDate] = useState("");
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
@@ -31,13 +30,11 @@ export function TodoForm({ onSuccess }: TodoFormProps) {
 			await createTodo({
 				title: title.trim(),
 				description: description.trim() || undefined,
-				dueDate: dueDate || undefined,
 			});
 
 			// フォームをリセット
 			setTitle("");
 			setDescription("");
-			setDueDate("");
 
 			onSuccess?.();
 		} catch (error) {
@@ -73,17 +70,6 @@ export function TodoForm({ onSuccess }: TodoFormProps) {
 							value={description}
 							onChange={(e) => setDescription(e.target.value)}
 							placeholder="タスクの詳細を入力"
-							disabled={isSubmitting}
-						/>
-					</div>
-
-					<div className="space-y-2">
-						<Label htmlFor="dueDate">期限</Label>
-						<Input
-							id="dueDate"
-							type="datetime-local"
-							value={dueDate}
-							onChange={(e) => setDueDate(e.target.value)}
 							disabled={isSubmitting}
 						/>
 					</div>

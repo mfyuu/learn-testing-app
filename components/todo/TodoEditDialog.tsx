@@ -34,7 +34,7 @@ export function TodoEditDialog({
 	const [isSubmitting, setIsSubmitting] = useState(false);
 	const [title, setTitle] = useState("");
 	const [description, setDescription] = useState("");
-	const [dueDate, setDueDate] = useState("");
+
 	const [completed, setCompleted] = useState(false);
 
 	useEffect(() => {
@@ -42,17 +42,6 @@ export function TodoEditDialog({
 			setTitle(todo.title);
 			setDescription(todo.description || "");
 			setCompleted(todo.completed);
-
-			// 日付の変換（APIの形式から入力フィールドの形式へ）
-			if (todo.dueDate) {
-				const date = new Date(todo.dueDate);
-				const localDate = new Date(
-					date.getTime() - date.getTimezoneOffset() * 60000,
-				);
-				setDueDate(localDate.toISOString().slice(0, 16));
-			} else {
-				setDueDate("");
-			}
 		}
 	}, [open, todo]);
 
@@ -68,7 +57,6 @@ export function TodoEditDialog({
 			await updateTodo(todo.id, {
 				title: title.trim(),
 				description: description.trim() || undefined,
-				dueDate: dueDate || undefined,
 				completed,
 			});
 
@@ -108,17 +96,6 @@ export function TodoEditDialog({
 							value={description}
 							onChange={(e) => setDescription(e.target.value)}
 							placeholder="タスクの詳細を入力"
-							disabled={isSubmitting}
-						/>
-					</div>
-
-					<div className="space-y-2">
-						<Label htmlFor="edit-dueDate">期限</Label>
-						<Input
-							id="edit-dueDate"
-							type="datetime-local"
-							value={dueDate}
-							onChange={(e) => setDueDate(e.target.value)}
 							disabled={isSubmitting}
 						/>
 					</div>

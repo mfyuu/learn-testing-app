@@ -29,10 +29,6 @@ components:
         completed:
           type: boolean
           example: false
-        dueDate:
-          type: string
-          format: date-time
-          example: "2024-12-31T23:59:59Z"
         createdAt:
           type: string
           format: date-time
@@ -57,9 +53,6 @@ components:
         description:
           type: string
           maxLength: 500
-        dueDate:
-          type: string
-          format: date-time
       required:
         - title
     UpdateTodo:
@@ -74,9 +67,6 @@ components:
           maxLength: 500
         completed:
           type: boolean
-        dueDate:
-          type: string
-          format: date-time
   parameters: {}
 paths:
   /api/todos:
@@ -90,7 +80,6 @@ paths:
         - schema:
             type: string
             enum:
-              - dueDate
               - createdAt
           required: false
           name: sortBy

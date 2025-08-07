@@ -2,12 +2,7 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import {
-	Card,
-	CardContent,
-	CardFooter,
-	CardHeader,
-} from "@/components/ui/card";
+import { Card, CardFooter, CardHeader } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useTodoMutations } from "@/lib/hooks/useTodoMutations";
 import type { Todo } from "@/lib/hooks/useTodos";
@@ -52,18 +47,6 @@ export function TodoItem({ todo, onUpdate }: TodoItemProps) {
 		}
 	};
 
-	const formatDate = (dateString: string | undefined) => {
-		if (!dateString) return null;
-		const date = new Date(dateString);
-		return date.toLocaleString("ja-JP", {
-			year: "numeric",
-			month: "2-digit",
-			day: "2-digit",
-			hour: "2-digit",
-			minute: "2-digit",
-		});
-	};
-
 	return (
 		<>
 			<Card className={todo.completed ? "opacity-60" : ""}>
@@ -91,14 +74,6 @@ export function TodoItem({ todo, onUpdate }: TodoItemProps) {
 						</div>
 					</div>
 				</CardHeader>
-
-				{todo.dueDate && (
-					<CardContent className="py-0 pb-3">
-						<p className="text-sm text-muted-foreground">
-							期限: {formatDate(todo.dueDate)}
-						</p>
-					</CardContent>
-				)}
 
 				<CardFooter className="gap-2 pt-3">
 					<Button
