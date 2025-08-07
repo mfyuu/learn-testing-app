@@ -131,9 +131,9 @@ pnpm dlx shadcn@latest add textarea
 
 ### Phase 1
 
-- [ ] 必要なパッケージのインストール完了
-- [ ] OpenAPI型定義の生成完了
-- [ ] APIクライアントの設定完了
+- [x] 必要なパッケージのインストール完了
+- [x] OpenAPI型定義の生成完了
+- [x] APIクライアントの設定完了
 
 ### Phase 2
 
