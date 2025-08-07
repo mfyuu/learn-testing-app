@@ -16,10 +16,7 @@ export default function Home() {
 
 				<TodoForm />
 
-				<div className="space-y-4">
-					<h2 className="text-2xl font-semibold">TODO一覧</h2>
-					<TodoList />
-				</div>
+				<TodoList />
 			</div>
 		</main>
 	);

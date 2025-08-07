@@ -1,8 +1,9 @@
 "use client";
 
+import { Pencil, Trash2 } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardFooter, CardHeader } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useTodoMutations } from "@/lib/hooks/useTodoMutations";
 import type { Todo } from "@/lib/hooks/useTodos";
@@ -49,50 +50,48 @@ export function TodoItem({ todo, onUpdate }: TodoItemProps) {
 
 	return (
 		<>
-			<Card className={todo.completed ? "opacity-60" : ""}>
-				<CardHeader className="pb-3">
-					<div className="flex items-start gap-3">
-						<Checkbox
-							checked={todo.completed}
-							onCheckedChange={handleToggleComplete}
-							disabled={isToggling || isDeleting}
-							className="mt-1"
-						/>
-						<div className="flex-1">
-							<h3
-								className={`text-lg font-semibold ${
-									todo.completed ? "line-through" : ""
-								}`}
-							>
-								{todo.title}
-							</h3>
-							{todo.description && (
-								<p className="text-sm text-muted-foreground mt-1">
-									{todo.description}
-								</p>
-							)}
-						</div>
+			<Card className={`${todo.completed ? "opacity-60" : ""} p-3`}>
+				<div className="flex items-center gap-3">
+					<Checkbox
+						checked={todo.completed}
+						onCheckedChange={handleToggleComplete}
+						disabled={isToggling || isDeleting}
+					/>
+					<div className="flex-1 min-w-0">
+						<h3
+							className={`font-semibold ${
+								todo.completed ? "line-through text-muted-foreground" : ""
+							}`}
+						>
+							{todo.title}
+						</h3>
+						{todo.description && (
+							<p className="text-sm text-muted-foreground">
+								{todo.description}
+							</p>
+						)}
 					</div>
-				</CardHeader>
-
-				<CardFooter className="gap-2 pt-3">
-					<Button
-						size="sm"
-						variant="outline"
-						onClick={() => setIsEditOpen(true)}
-						disabled={isDeleting}
-					>
-						編集
-					</Button>
-					<Button
-						size="sm"
-						variant="destructive"
-						onClick={handleDelete}
-						disabled={isDeleting}
-					>
-						{isDeleting ? "削除中..." : "削除"}
-					</Button>
-				</CardFooter>
+					<div className="flex items-center gap-1">
+						<Button
+							size="icon"
+							variant="ghost"
+							onClick={() => setIsEditOpen(true)}
+							disabled={isDeleting}
+							className="h-8 w-8"
+						>
+							<Pencil className="h-4 w-4" />
+						</Button>
+						<Button
+							size="icon"
+							variant="ghost"
+							onClick={handleDelete}
+							disabled={isDeleting}
+							className="h-8 w-8 hover:bg-destructive/10"
+						>
+							<Trash2 className="h-4 w-4 text-destructive" />
+						</Button>
+					</div>
+				</div>
 			</Card>
 
 			<TodoEditDialog
