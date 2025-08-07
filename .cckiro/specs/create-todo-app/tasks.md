@@ -153,7 +153,7 @@ pnpm dlx shadcn@latest add textarea
 
 ### Phase 5
 
-- [ ] page.tsxの更新完了
+- [x] page.tsxの更新完了
 
 ### Phase 6
 
