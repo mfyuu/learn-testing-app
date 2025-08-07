@@ -137,7 +137,7 @@ pnpm dlx shadcn@latest add textarea
 
 ### Phase 2
 
-- [ ] shadcn/uiコンポーネントの追加完了
+- [x] shadcn/uiコンポーネントの追加完了
 
 ### Phase 3
 
