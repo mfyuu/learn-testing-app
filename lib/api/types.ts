@@ -14,7 +14,8 @@ export interface paths {
 		get: {
 			parameters: {
 				query?: {
-					completed?: string;
+					/** @description 完了状態でフィルタリング（true: 完了済み, false: 未完了） */
+					completed?: "true" | "false";
 					sortBy?: "createdAt";
 					order?: "asc" | "desc";
 				};

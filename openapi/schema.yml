@@ -74,13 +74,20 @@ paths:
       parameters:
         - schema:
             type: string
+            enum:
+              - "true"
+              - "false"
+            description: "完了状態でフィルタリング（true: 完了済み, false: 未完了）"
+            example: "false"
           required: false
+          description: "完了状態でフィルタリング（true: 完了済み, false: 未完了）"
           name: completed
           in: query
         - schema:
             type: string
             enum:
               - createdAt
+            example: createdAt
           required: false
           name: sortBy
           in: query
@@ -89,6 +96,7 @@ paths:
             enum:
               - asc
               - desc
+            example: asc
           required: false
           name: order
           in: query
