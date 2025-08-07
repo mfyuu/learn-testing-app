@@ -146,10 +146,10 @@ pnpm dlx shadcn@latest add textarea
 
 ### Phase 4
 
-- [ ] TodoFormコンポーネントの実装完了
-- [ ] TodoItemコンポーネントの実装完了
-- [ ] TodoEditDialogコンポーネントの実装完了
-- [ ] TodoListコンポーネントの実装完了
+- [x] TodoFormコンポーネントの実装完了
+- [x] TodoItemコンポーネントの実装完了
+- [x] TodoEditDialogコンポーネントの実装完了
+- [x] TodoListコンポーネントの実装完了
 
 ### Phase 5
 

@@ -1,5 +1,3 @@
-"use client";
-
 import { mutate } from "swr";
 import { apiClient } from "@/lib/api/client";
 import type { components } from "@/lib/api/types";
