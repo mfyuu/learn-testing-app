@@ -13,7 +13,8 @@
 		"lint:fix": "biome lint --write .",
 		"lint:fix:unsafe": "biome lint --write --unsafe .",
 		"check": "biome check --write .",
-		"generate:types": "openapi-typescript openapi/schema.yml -o lib/api/types.ts"
+		"generate:types": "openapi-typescript openapi/schema.yml -o lib/api/types.ts",
+		"test": "vitest"
 	},
 	"dependencies": {
 		"@radix-ui/react-checkbox": "^1.3.2",
