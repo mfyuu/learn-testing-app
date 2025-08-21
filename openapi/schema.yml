@@ -4,7 +4,7 @@ info:
   version: 1.0.0
   description: TODOアプリケーションのRESTful API
 servers:
-  - url: https://learn-testing-api.namidapoo.workers.dev
+  - url: https://learn-testing-api.mfyuu.workers.dev
     description: Production
   - url: http://localhost:8787
     description: Local Development
