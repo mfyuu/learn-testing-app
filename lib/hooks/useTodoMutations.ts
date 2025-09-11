@@ -1,12 +1,15 @@
+import type createClient from "openapi-fetch";
 import { mutate } from "swr";
-import { apiClient } from "@/lib/api/client";
-import type { components } from "@/lib/api/types";
+import { apiClient as defaultApiClient } from "@/lib/api/client";
+import type { components, paths } from "@/lib/api/types";
 
 type CreateTodoInput = components["schemas"]["CreateTodo"];
 type UpdateTodoInput = components["schemas"]["UpdateTodo"];
 type Todo = components["schemas"]["Todo"];
 
-export function useTodoMutations() {
+type ApiClient = ReturnType<typeof createClient<paths>>;
+
+export function useTodoMutations(apiClient: ApiClient = defaultApiClient) {
 	const createTodo = async (input: CreateTodoInput) => {
 		const response = await apiClient.POST("/api/todos", {
 			body: input,
@@ -45,7 +48,7 @@ export function useTodoMutations() {
 			},
 		});
 
-		if (response.error) {
+		if (!response.data) {
 			throw new Error("Failed to delete todo");
 		}
 
